@@ -1,0 +1,24 @@
+{
+  "name": "@wizamit/mundana-frontity-theme",
+  "version": "1.0.0",
+  "description": "Mundana Frontity Theme",
+  "keywords": [
+    "frontity",
+    "frontity-theme",
+    "undana-frontity-theme"
+  ],
+  "homepage": "https://www.wizamit.com",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frontity/frontity.git"
+  },
+  "bugs": {
+    "url": "https://community.frontity.org"
+  },
+  "dependencies": {
+    "@frontity/components": "^1.7.2",
+    "@frontity/html2react": "^1.6.1",
+    "frontity": "^1.15.0"
+  }
+}
