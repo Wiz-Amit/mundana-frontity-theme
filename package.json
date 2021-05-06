@@ -20,5 +20,8 @@
     "@frontity/components": "^1.7.2",
     "@frontity/html2react": "^1.6.1",
     "frontity": "^1.15.0"
+  },
+  "scripts": {
+    "publish": "npm publish --access public"
   }
 }
