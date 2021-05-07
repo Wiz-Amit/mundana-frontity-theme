@@ -8,68 +8,66 @@ import Link from "./link";
  */
 const Nav = ({ state }) => (
   <NavContainer>
-    {state.theme.menu.map(([name, link]) => {
-      // Check if the link matched the current page url
-      const isCurrentPage = state.router.link === link;
-      return (
-        <NavItem key={name}>
-          {/* If link url is the current page, add `aria-current` for a11y */}
-          <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-            {name}
-          </Link>
-        </NavItem>
-      );
-    })}
+    <nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">
+          <strong>Mundana</strong>
+        </a>
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarColor02"
+          aria-controls="navbarColor02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor02">
+          <ul class="navbar-nav mr-auto d-flex align-items-center">
+            {state.theme.menu.map(([name, link]) => {
+              // Check if the link matched the current page url
+              const isCurrentPage = state.router.link === link;
+              return (
+                <NavItem className="nav-item" key={name}>
+                  {/* If link url is the current page, add `aria-current` for a11y */}
+                  <Link
+                    className={"nav-link" + (isCurrentPage ? " active" : "")}
+                    link={link}
+                    aria-current={isCurrentPage ? "page" : undefined}
+                  >
+                    {name}
+                    {isCurrentPage ? (
+                      <span class="sr-only">(current)</span>
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                </NavItem>
+              );
+            })}
+          </ul>
+
+          <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <li class="nav-item highlight">
+              <a
+                target="_blank"
+                class="nav-link"
+                href="https://github.com/Wiz-Amit/mundana-frontity-theme"
+              >
+                Get this Theme
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </NavContainer>
 );
 
 export default connect(Nav);
 
-const NavContainer = styled.nav`
-  list-style: none;
-  display: flex;
-  width: 848px;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 0 24px;
-  margin: 0;
-  overflow-x: auto;
+const NavContainer = styled.nav``;
 
-  @media screen and (max-width: 560px) {
-    display: none;
-  }
-`;
-
-const NavItem = styled.div`
-  padding: 0;
-  margin: 0 16px;
-  color: #fff;
-  font-size: 0.9em;
-  box-sizing: border-box;
-  flex-shrink: 0;
-
-  & > a {
-    display: inline-block;
-    line-height: 2em;
-    border-bottom: 2px solid;
-    border-bottom-color: transparent;
-    /* Use for semantic approach to style the current link */
-    &[aria-current="page"] {
-      border-bottom-color: #fff;
-    }
-  }
-
-  &:first-of-type {
-    margin-left: 0;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-
-    &:after {
-      content: "";
-      display: inline-block;
-      width: 24px;
-    }
-  }
-`;
+const NavItem = styled.li``;
