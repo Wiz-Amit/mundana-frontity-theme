@@ -11,13 +11,13 @@ const Nav = ({ state }) => {
 
   return (
     <NavContainer>
-      <nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container">
+      <nav className="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div className="container">
           <Link className={"navbar-brand"} link="/">
             <strong>{title}</strong>
           </Link>
           <button
-            class="navbar-toggler collapsed"
+            className="navbar-toggler collapsed"
             type="button"
             data-toggle="collapse"
             data-target="#navbarColor02"
@@ -25,10 +25,10 @@ const Nav = ({ state }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="navbar-collapse collapse" id="navbarColor02">
-            <ul class="navbar-nav mr-auto d-flex align-items-center">
+          <div className="navbar-collapse collapse" id="navbarColor02">
+            <ul className="navbar-nav mr-auto d-flex align-items-center">
               {state.theme.menu.map(([name, link]) => {
                 // Check if the link matched the current page url
                 const isCurrentPage = state.router.link === link;
@@ -42,7 +42,7 @@ const Nav = ({ state }) => {
                     >
                       {name}
                       {isCurrentPage ? (
-                        <span class="sr-only">(current)</span>
+                        <span className="sr-only">(current)</span>
                       ) : (
                         ""
                       )}
@@ -52,11 +52,11 @@ const Nav = ({ state }) => {
               })}
             </ul>
 
-            <ul class="navbar-nav ml-auto d-flex align-items-center">
-              <li class="nav-item highlight">
+            <ul className="navbar-nav ml-auto d-flex align-items-center">
+              <li className="nav-item highlight">
                 <a
                   target="_blank"
-                  class="nav-link"
+                  className="nav-link"
                   href="https://github.com/Wiz-Amit/mundana-frontity-theme"
                 >
                   Get this Theme

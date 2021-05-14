@@ -17,6 +17,9 @@ const Post = ({ state, actions, libraries }) => {
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
+  const categories = post.categories.map((id) => state.source.category[id]);
+  const media = state.source.attachment[post.featured_media];
+
   /**
    * Once the post has loaded in the DOM, prefetch both the
    * home posts and the list component so if the user visits
@@ -30,11 +33,58 @@ const Post = ({ state, actions, libraries }) => {
   // Load the post, but only if the data is ready.
   return data.isReady ? (
     <Container>
-      <div>
-        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+      <div className="container">
+        <div className="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+          <div className="h-100 tofront">
+            <div className="row justify-content-between">
+              <div className="col pt-6 pb-6 pr-6 align-self-center">
+                <p className="text-uppercase font-weight-bold">
+                  {categories.map((cat) => (
+                    <a
+                      key={cat.name}
+                      className="text-danger"
+                      href="./category.html"
+                    >
+                      {cat.name}
+                    </a>
+                  ))}
+                </p>
+                <Title
+                  className="display-4 secondfont mb-3 font-weight-bold"
+                  dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                />
+                {/* <p className="mb-3">
+                  Analysts told CNBC that the currency could hit anywhere
+                  between $1.35-$1.40 if the deal gets passed through the U.K.
+                  parliament.
+                </p> */}
+                <div className="d-flex align-items-center">
+                  <img
+                    className="rounded-circle"
+                    src={`https://ui-avatars.com/api/?name=${author.name}`}
+                    width="70"
+                  />
+                  <small className="ml-2">
+                    Jane Seymour
+                    <span className="text-muted d-block">
+                      A few hours ago &middot; 5 min. read
+                    </span>
+                  </small>
+                </div>
+              </div>
+              {state.theme.featured.showOnPost && (
+                <div className="col-md-6 pr-0">
+                  <img src={media.source_url} />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div>
         {/* Only display author and date on posts */}
-        {data.isPost && (
+        {/* {data.isPost && (
           <div>
             {author && (
               <StyledLink link={author.link}>
@@ -48,37 +98,25 @@ const Post = ({ state, actions, libraries }) => {
               on <b>{date.toDateString()}</b>
             </DateWrapper>
           </div>
-        )}
+        )} */}
       </div>
 
-      {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
-        <FeaturedMedia id={post.featured_media} />
-      )}
-
-      {/* Render the content using the Html2React component so the HTML is processed
+      <div className="container">
+        {/* Render the content using the Html2React component so the HTML is processed
        by the processors we included in the libraries.html2react.processors array. */}
-      <Content>
-        <Html2React html={post.content.rendered} />
-      </Content>
+        <Content>
+          <Html2React html={post.content.rendered} />
+        </Content>
+      </div>
     </Container>
   ) : null;
 };
 
 export default connect(Post);
 
-const Container = styled.div`
-  width: 800px;
-  margin: 0;
-  padding: 24px;
-`;
+const Container = styled.div``;
 
-const Title = styled.h1`
-  margin: 0;
-  margin-top: 24px;
-  margin-bottom: 8px;
-  color: rgba(12, 17, 43);
-`;
+const Title = styled.h1``;
 
 const StyledLink = styled(Link)`
   padding: 15px 0;
@@ -194,7 +232,7 @@ const Content = styled.div`
     background-color: #ec9a15;
   }
 
-  /* WordPress Core Align Classes */
+  /* WordPress Core Align classNamees */
 
   @media (min-width: 420px) {
     img.aligncenter,
